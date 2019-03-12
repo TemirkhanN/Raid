@@ -6,7 +6,7 @@ interface Subject {
 
 }
 
-interface Target {
+public interface Target {
 
 }
 

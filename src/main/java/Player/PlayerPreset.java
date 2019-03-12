@@ -1,4 +1,7 @@
-package Model;
+package Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerPreset {
     private String name;
@@ -9,5 +12,9 @@ public class PlayerPreset {
 
     public String getName() {
         return name;
+    }
+
+    public List<Integer> getSkills() {
+        return new ArrayList<Integer>();
     }
 }
