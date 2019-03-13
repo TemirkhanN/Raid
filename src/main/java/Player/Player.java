@@ -36,12 +36,12 @@ public class Player implements Subject, Target {
     }
 
     public Party partyUp(Player anotherPlayer) throws LogicException {
-        if (party.isFull()) {
-            throw new LogicException("Player");
-        }
-
         if (party == null) {
             party = new Party(this);
+        }
+
+        if (party.isFull()) {
+            throw new LogicException("Player");
         }
 
         party.addMember(anotherPlayer);
