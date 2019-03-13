@@ -1,39 +1,6 @@
 package TemirkhanN;
 
-import java.util.List;
-
-interface Subject {
-
-}
-
-public interface Target {
-
-}
-
-interface Skill {
-
-}
-
-interface PlayerPreset {
-
-}
-
-interface Player extends Target, Subject {
-    public Player createPlayer(PlayerPreset preset);
-
-    public int attack(Target boss);
-
-    public List<Skill> getSkills();
-
-    public void useSkill(Skill skill, Target target);
-
-    public Party partyUp(Player anotherPlayer);
-}
-
-interface Party extends Subject {
-    public void joinRaid(Raid raid);
-}
-
+/**
 interface Boss extends Target, Subject {
     public void attack(Target target);
 }
@@ -46,10 +13,7 @@ interface Raid extends Subject {
     public Party getParty();
 }
 
-interface Overseer {
-    public void observe(Subject subject);
-}
-
+*/
 
 public class Main {
 
