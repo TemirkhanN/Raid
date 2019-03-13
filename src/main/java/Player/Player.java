@@ -13,7 +13,7 @@ public class Player implements Subject, Target {
     private List<Integer> skills;
     private Party party;
 
-    Player (PlayerPreset preset) {
+    public Player (PlayerPreset preset) {
         name = preset.getName();
         skills = preset.getSkills();
         attack = preset.getAttack();

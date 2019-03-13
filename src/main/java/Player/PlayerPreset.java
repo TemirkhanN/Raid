@@ -7,7 +7,7 @@ public class PlayerPreset {
     private String name;
     private Integer attack;
 
-    PlayerPreset(String name, Integer attack) {
+    public PlayerPreset(String name, Integer attack) {
         this.name = name;
         this.attack = attack;
     }

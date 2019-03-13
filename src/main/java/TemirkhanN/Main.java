@@ -1,5 +1,8 @@
 package TemirkhanN;
 
+import Player.*;
+import Player.Exception.*;
+
 /**
 interface Boss extends Target, Subject {
     public void attack(Target target);
@@ -18,9 +21,19 @@ interface Raid extends Subject {
 public class Main {
 
     public static void main(String[] args) {
+
         // Create some player
+        PlayerPreset preset = new PlayerPreset("Wolfgang", 100);
+        Player somePlayer = new Player(preset);
         // Create another player
+        PlayerPreset anotherPreset = new PlayerPreset("Gilbert", 90);
+        Player anotherPlayer = new Player(anotherPreset);
         // Some player teams up with another player and create party
+        try {
+            somePlayer.partyUp(anotherPlayer);
+        } catch (LogicException exception) {
+            System.exit(126);
+        }
         // Find some boss
         // Instantiate raid with found boss and created party
         // Pass raid to game observer and instantiate calculations with callbacks, timeouts and etc
