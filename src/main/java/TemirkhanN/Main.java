@@ -4,9 +4,6 @@ import Player.*;
 import Player.Exception.*;
 
 /**
-interface Boss extends Target, Subject {
-    public void attack(Target target);
-}
 
 interface Raid extends Subject {
     public Raid createRaid(Boss boss, Party party);
