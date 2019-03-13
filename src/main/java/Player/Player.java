@@ -16,6 +16,7 @@ public class Player implements Subject, Target {
     Player (PlayerPreset preset) {
         name = preset.getName();
         skills = preset.getSkills();
+        attack = preset.getAttack();
     }
 
     public String getName() {
@@ -23,7 +24,7 @@ public class Player implements Subject, Target {
     }
 
     public int getAttack() {
-        return 123;
+        return attack;
     }
 
     public List<Integer> getSkills() {
