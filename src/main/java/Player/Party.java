@@ -1,9 +1,11 @@
 package Player;
 
+import Overseer.Subject;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Party {
+public class Party implements Subject {
     private final int MAX_MEMBERS = 3;
 
     private Player leader;

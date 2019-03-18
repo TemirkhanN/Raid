@@ -1,19 +1,18 @@
 package Overseer;
 
+import App.Event.Dispatcher;
+import Overseer.Event.NewSubjectEvent;
+
 import java.util.HashSet;
 import java.util.Set;
 
 public class Overseer {
-    private static Overseer instance;
+    private Dispatcher eventDispatcher;
 
     private Set<Subject> subjects = new HashSet<Subject>();
 
-    public static Overseer getInstance() {
-        if (instance == null) {
-            instance = new Overseer();
-        }
-
-        return instance;
+    public Overseer(Dispatcher eventDispatcher) {
+        this.eventDispatcher = eventDispatcher;
     }
 
     public void observe(Subject subject) {
@@ -21,11 +20,9 @@ public class Overseer {
             return;
         }
 
+        eventDispatcher.dispatch("new_subject_in_game", new NewSubjectEvent(subject));
+
         // TODO Some observation strategies iduhno
         subjects.add(subject);
-    }
-
-    private Overseer() {
-
     }
 }
