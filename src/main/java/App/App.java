@@ -1,5 +1,7 @@
 package App;
 
+import App.Event.Dispatcher;
+import App.Event.EventDispatcher;
 import Boss.Boss;
 import Boss.Raid;
 import Overseer.Overseer;
@@ -8,6 +10,8 @@ import Player.Exception.*;
 
 public class App {
     private static int COMMAND_EXECUTION_FAILURE = 126;
+
+    private Dispatcher eventDispatcher;
 
     public static void main(String[] args) {
         // Create some player
@@ -30,5 +34,9 @@ public class App {
         } catch (LogicException exception) {
             System.exit(COMMAND_EXECUTION_FAILURE);
         }
+    }
+
+    private void initializeEventDispatcher() {
+        eventDispatcher = new EventDispatcher();
     }
 }
