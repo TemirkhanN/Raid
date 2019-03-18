@@ -1,4 +1,4 @@
-package TemirkhanN;
+package App;
 
 import Boss.Boss;
 import Boss.Raid;
@@ -6,11 +6,10 @@ import Overseer.Overseer;
 import Player.*;
 import Player.Exception.*;
 
-public class Main {
+public class App {
     private static int COMMAND_EXECUTION_FAILURE = 126;
 
     public static void main(String[] args) {
-
         // Create some player
         PlayerPreset preset = new PlayerPreset("Wolfgang", 100);
         Player somePlayer = new Player(preset);
