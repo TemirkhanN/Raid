@@ -7,6 +7,7 @@ import Player.*;
 import Player.Exception.*;
 
 public class Main {
+    private static int COMMAND_EXECUTION_FAILURE = 126;
 
     public static void main(String[] args) {
 
@@ -28,7 +29,7 @@ public class Main {
             gameMaster.observe(raid);
             // Players takes some actions || Simultaneously boss takes some actions based on predefined primitive AI
         } catch (LogicException exception) {
-            System.exit(126);
+            System.exit(COMMAND_EXECUTION_FAILURE);
         }
     }
 }
