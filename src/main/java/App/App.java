@@ -10,7 +10,7 @@ import Player.*;
 import Player.Exception.*;
 
 public class App {
-    private static int COMMAND_EXECUTION_FAILURE = 126;
+    private final static int COMMAND_EXECUTION_FAILURE = 126;
 
     public static void main(String[] args) {
         //System initialization
@@ -25,22 +25,26 @@ public class App {
         PlayerPreset anotherPreset = new PlayerPreset("Gilbert", 90);
         Player anotherPlayer = new Player(anotherPreset);
         gameMaster.observe(anotherPlayer);
+
+        Party braveParty = null;
+
         try {
             // Some player teams up with another player and create party
-            Party braveParty = somePlayer.partyUp(anotherPlayer);
-            gameMaster.observe(braveParty);
-            // Find some boss
-            Boss raidBoss = new Boss("Beorn");
-            gameMaster.observe(raidBoss);
-            // Instantiate raid with found boss and created party
-            Raid raid = new Raid(raidBoss, braveParty);
-            gameMaster.observe(raid);
-            // Pass raid to game observer and instantiate calculations with callbacks, timeouts and etc
-            gameMaster.observe(raid);
-            // Players takes some actions || Simultaneously boss takes some actions based on predefined primitive AI
+            braveParty = somePlayer.partyUp(anotherPlayer);
         } catch (LogicException exception) {
             System.exit(COMMAND_EXECUTION_FAILURE);
         }
+
+        gameMaster.observe(braveParty);
+        // Find some boss
+        Boss raidBoss = new Boss("Beorn");
+        gameMaster.observe(raidBoss);
+        // Instantiate raid with found boss and created party
+        Raid raid = new Raid(raidBoss, braveParty);
+        gameMaster.observe(raid);
+        // Pass raid to game observer and instantiate calculations with callbacks, timeouts and etc
+        gameMaster.observe(raid);
+        // Players takes some actions || Simultaneously boss takes some actions based on predefined primitive AI
     }
 
     private static Dispatcher initializeEventDispatcher() {
