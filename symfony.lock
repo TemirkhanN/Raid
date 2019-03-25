@@ -2,6 +2,12 @@
     "league/tactician": {
         "version": "v1.0.3"
     },
+    "psr/container": {
+        "version": "1.0.0"
+    },
+    "symfony/config": {
+        "version": "v4.2.4"
+    },
     "symfony/console": {
         "version": "3.3",
         "recipe": {
@@ -18,6 +24,15 @@
     "symfony/contracts": {
         "version": "v1.0.2"
     },
+    "symfony/dependency-injection": {
+        "version": "v4.2.4"
+    },
+    "symfony/dotenv": {
+        "version": "v4.2.4"
+    },
+    "symfony/filesystem": {
+        "version": "v4.2.4"
+    },
     "symfony/flex": {
         "version": "1.0",
         "recipe": {
@@ -30,7 +45,13 @@
             ".env"
         ]
     },
+    "symfony/polyfill-ctype": {
+        "version": "v1.11.0"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.11.0"
+    },
+    "symfony/yaml": {
+        "version": "v4.2.4"
     }
 }

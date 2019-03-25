@@ -1,0 +1,12 @@
+parameters:
+  project_name: 'Raid'
+services:
+  _defaults:
+    autowire: false
+    autoconfigure: false
+
+  application.console:
+    public: true
+    class: Symfony\Component\Console\Application
+    arguments:
+      - '%project_name%'
