@@ -2,6 +2,7 @@
     "require": {
         "symfony/flex": "^1.2",
         "php": "^7.3",
-        "symfony/console": "^4.2"
+        "symfony/console": "^4.2",
+        "league/tactician": "^1.0"
     }
 }
