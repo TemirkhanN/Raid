@@ -1,5 +1,7 @@
 {
     "require": {
-        "symfony/flex": "^1.2"
+        "symfony/flex": "^1.2",
+        "php": "^7.3",
+        "symfony/console": "^4.2"
     }
 }
