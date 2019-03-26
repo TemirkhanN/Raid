@@ -1,3 +1,28 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Raid\Player\Model;
+
+use Raid\Player\DTO\PlayerPreset;
+
+class Player
+{
+    private $name;
+
+    public function __construct(PlayerPreset $playerPreset)
+    {
+        $this->name = $playerPreset->getName();
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+}
+
+/*
+
 package Player;
 
 import Overseer.Subject;

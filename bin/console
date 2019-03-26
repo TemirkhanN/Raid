@@ -2,7 +2,6 @@
 <?php
 
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
@@ -19,5 +18,4 @@ $containerBuilder->compile();
 
 $console = $containerBuilder->get('application.console');
 
-$input = new ArgvInput();
-$console->run($input);
+$console->run();
