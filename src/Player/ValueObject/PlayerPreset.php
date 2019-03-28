@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Raid\Player\DTO;
+namespace Raid\Player\ValueObject;
 
 class PlayerPreset
 {

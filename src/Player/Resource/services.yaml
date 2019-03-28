@@ -1,0 +1,5 @@
+imports:
+  - { resource: command-handlers.yaml }
+services:
+  raid.player.service.create_player:
+    class: Raid\Player\Service\CreatePlayerService

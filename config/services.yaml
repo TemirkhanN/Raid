@@ -1,10 +1,10 @@
+imports:
+  - { resource: ../src/App/Resource/commands.yaml }
+  - { resource: command-bus.yaml }
+
 parameters:
   project_name: 'Raid'
 services:
-  _defaults:
-    autowire: false
-    autoconfigure: false
-
   application.console:
     public: true
     class: Symfony\Component\Console\Application

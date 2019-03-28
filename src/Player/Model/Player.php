@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Raid\Player\Model;
 
-use Raid\Player\DTO\PlayerPreset;
+use Raid\Player\ValueObject\PlayerPreset;
 
 class Player
 {

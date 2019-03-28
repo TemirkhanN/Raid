@@ -1,0 +1,8 @@
+services:
+  app.create_player:
+    class: Raid\App\Command\CreatePlayerCommand
+    arguments:
+      - '@raid.command.bus'
+      - 'create_player'
+    tags:
+      - { name: 'console.command' }

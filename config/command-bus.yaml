@@ -1,0 +1,26 @@
+imports:
+  - { resource: ../src/Player/Resource/services.yaml }
+
+services:
+  raid.command.handler_method_inflector:
+    class: League\Tactician\Handler\MethodNameInflector\HandleInflector
+
+  raid.command.handler_name_extractor:
+    class: League\Tactician\Plugins\NamedCommand\NamedCommandExtractor
+
+  raid.command.handler_locator:
+    class: League\Tactician\Handler\Locator\InMemoryLocator
+    calls:
+      - ['addHandler', ['@raid.player.command_handler.create_player', 'create_new_player']]
+
+  raid.command_handler_mware:
+    class: League\Tactician\Handler\CommandHandlerMiddleware
+    arguments:
+      - '@raid.command.handler_name_extractor'
+      - '@raid.command.handler_locator'
+      - '@raid.command.handler_method_inflector'
+
+  raid.command.bus:
+    public: true
+    class: League\Tactician\CommandBus
+    arguments: [['@raid.command_handler_mware']]
