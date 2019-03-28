@@ -24,7 +24,8 @@ class CreatePlayerHandler
         $preset = new PlayerPreset(
             $command->getName(),
             $command->getAttack(),
-            $command->getDefence()
+            $command->getDefence(),
+            100
         );
 
         $player = $this->playerCreator->execute($preset);

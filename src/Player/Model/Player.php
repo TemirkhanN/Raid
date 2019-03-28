@@ -10,14 +10,70 @@ class Player
 {
     private $name;
 
+    /**
+     * @var int
+     */
+    private $attack;
+
+    /**
+     * @var int
+     */
+    private $defence;
+
+    /**
+     * @var int
+     */
+    private $currentHealth;
+
+    /**
+     * @var int
+     */
+    private $maxHealth;
+
     public function __construct(PlayerPreset $playerPreset)
     {
         $this->name = $playerPreset->getName();
+        $this->attack = $playerPreset->getAttack();
+        $this->defence = $playerPreset->getDefence();
+        $this->maxHealth = $playerPreset->getMaxHealth();
+        $this->currentHealth = $this->maxHealth;
     }
 
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAttack(): int
+    {
+        return $this->attack;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDefence(): int
+    {
+        return $this->defence;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCurrentHealth(): int
+    {
+        return $this->currentHealth;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMaxHealth(): int
+    {
+        return $this->maxHealth;
     }
 }
 
@@ -74,3 +130,4 @@ public class Player implements Subject, Target {
         return party;
     }
 }
+*/

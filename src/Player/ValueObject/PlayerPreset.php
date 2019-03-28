@@ -12,11 +12,14 @@ class PlayerPreset
 
     private $defence;
 
-    public function __construct(string $name, int $attack, int $defence)
+    private $maxHealth;
+
+    public function __construct(string $name, int $attack, int $defence, int $maxHealth)
     {
         $this->name = $name;
         $this->attack = $attack;
         $this->defence = $defence;
+        $this->maxHealth = $maxHealth;
     }
 
     /**
@@ -41,5 +44,13 @@ class PlayerPreset
     public function getDefence(): int
     {
         return $this->defence;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMaxHealth(): int
+    {
+        return $this->maxHealth;
     }
 }

@@ -35,6 +35,17 @@ class CreatePlayerCommand extends Command
          */
         $player = $this->commandBus->handle($command);
 
-        $output->writeln(sprintf('Player %s has entered the game', $player->getName()));
+        $output->writeln(sprintf('%s has entered the game', ColoredCliFormatter::green($player->getName())));
+        $output->writeln(ColoredCliFormatter::green('Stats'));
+        $output->writeln(
+            sprintf(
+                '%s: %d/%d',
+                ColoredCliFormatter::blue('Health'),
+                $player->getCurrentHealth(),
+                $player->getMaxHealth()
+            )
+        );
+        $output->writeln(sprintf('%s: %d', ColoredCliFormatter::blue('Attack'), $player->getAttack()));
+        $output->writeln(sprintf('%s: %d', ColoredCliFormatter::blue('Defence'), $player->getDefence()));
     }
 }
