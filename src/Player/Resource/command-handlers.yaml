@@ -1,5 +1,5 @@
 services:
   raid.player.command_handler.create_player:
-    class: Raid\Player\Handler\CreatePlayerHandler
+    class: Raid\Player\Command\CreatePlayerHandler
     arguments:
       - '@raid.player.service.create_player'

@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Raid\Player\Handler;
+namespace Raid\Player\Command;
 
-use Raid\Player\Command\CreatePlayer;
 use Raid\Player\ValueObject\PlayerPreset;
 use Raid\Player\Service\CreatePlayerService;
 
