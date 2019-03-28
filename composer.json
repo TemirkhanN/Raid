@@ -1,4 +1,9 @@
 {
+    "autoload": {
+        "psr-4": {
+            "Raid\\": "src"
+        }
+    },
     "require": {
         "symfony/flex": "^1.2",
         "php": "^7.3",
