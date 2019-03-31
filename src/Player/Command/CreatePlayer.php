@@ -6,35 +6,69 @@ namespace Raid\Player\Command;
 
 use League\Tactician\Plugins\NamedCommand\NamedCommand;
 
+/**
+ * Player creation command
+ */
 class CreatePlayer implements NamedCommand
 {
-    private $name;
+    /**
+     * Player name
+     *
+     * @var string
+     */
+    private $playerName;
 
+    /**
+     * Player attack rate
+     *
+     * @var int
+     */
     private $attack;
 
+    /**
+     * Player defence rate
+     *
+     * @var int
+     */
     private $defence;
 
-    public function __construct(string $name, int $attack, int $defence)
+    /**
+     * Constructor
+     *
+     * @param string $playerName
+     * @param int    $attack
+     * @param int    $defence
+     */
+    public function __construct(string $playerName, int $attack, int $defence)
     {
-        $this->name = $name;
-        $this->attack = $attack;
-        $this->defence = $defence;
+        $this->playerName = $playerName;
+        $this->attack     = $attack;
+        $this->defence    = $defence;
     }
 
-    public function getCommandName()
+    /**
+     * Returns command name
+     *
+     * @return string
+     */
+    public function getCommandName(): string
     {
         return 'create_new_player';
     }
 
     /**
+     * Returns player name
+     *
      * @return string
      */
-    public function getName(): string
+    public function getPlayerName(): string
     {
-        return $this->name;
+        return $this->playerName;
     }
 
     /**
+     * Returns player attack rate
+     *
      * @return int
      */
     public function getAttack(): int
@@ -43,6 +77,8 @@ class CreatePlayer implements NamedCommand
     }
 
     /**
+     * Returns player defence rate
+     *
      * @return int
      */
     public function getDefence(): int

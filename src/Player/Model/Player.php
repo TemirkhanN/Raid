@@ -6,45 +6,73 @@ namespace Raid\Player\Model;
 
 use Raid\Player\ValueObject\PlayerPreset;
 
+/**
+ * Player
+ */
 class Player
 {
+    /**
+     * Name
+     *
+     * @var string
+     */
     private $name;
 
     /**
+     * Attack rate
+     *
      * @var int
      */
     private $attack;
 
     /**
+     * Defence rate
+     *
      * @var int
      */
     private $defence;
 
     /**
+     * Current health amount
+     *
      * @var int
      */
     private $currentHealth;
 
     /**
+     * Maximum health amount
+     *
      * @var int
      */
     private $maxHealth;
 
+    /**
+     * Constructor
+     *
+     * @param PlayerPreset $playerPreset
+     */
     public function __construct(PlayerPreset $playerPreset)
     {
-        $this->name = $playerPreset->getName();
-        $this->attack = $playerPreset->getAttack();
-        $this->defence = $playerPreset->getDefence();
-        $this->maxHealth = $playerPreset->getMaxHealth();
+        $this->name          = $playerPreset->getName();
+        $this->attack        = $playerPreset->getAttack();
+        $this->defence       = $playerPreset->getDefence();
+        $this->maxHealth     = $playerPreset->getMaxHealth();
         $this->currentHealth = $this->maxHealth;
     }
 
+    /**
+     * Returns name
+     *
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
 
     /**
+     * Returns attack rate
+     *
      * @return int
      */
     public function getAttack(): int
@@ -53,6 +81,8 @@ class Player
     }
 
     /**
+     * Returns defence rate
+     *
      * @return int
      */
     public function getDefence(): int
@@ -61,6 +91,8 @@ class Player
     }
 
     /**
+     * Returns current health amount
+     *
      * @return int
      */
     public function getCurrentHealth(): int
@@ -69,6 +101,8 @@ class Player
     }
 
     /**
+     * Returns max health amount
+     *
      * @return int
      */
     public function getMaxHealth(): int
@@ -76,58 +110,3 @@ class Player
         return $this->maxHealth;
     }
 }
-
-/*
-
-package Player;
-
-import Overseer.Subject;
-import Overseer.Target;
-import Player.Exception.LogicException;
-import Skill.Skill;
-
-import java.util.List;
-
-public class Player implements Subject, Target {
-    private String name;
-    private Integer attack;
-    private List<Integer> skills;
-    private Party party;
-
-    public Player (PlayerPreset preset) {
-        name = preset.getName();
-        skills = preset.getSkills();
-        attack = preset.getAttack();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAttack() {
-        return attack;
-    }
-
-    public List<Integer> getSkills() {
-        return skills;
-    }
-
-    public void useSkill(Skill skill, Target target) {
-
-    }
-
-    public Party partyUp(Player anotherPlayer) throws LogicException {
-        if (party == null) {
-            party = new Party(this);
-        }
-
-        if (party.isFull()) {
-            throw new LogicException("Player");
-        }
-
-        party.addMember(anotherPlayer);
-
-        return party;
-    }
-}
-*/

@@ -4,25 +4,58 @@ declare(strict_types=1);
 
 namespace Raid\Player\ValueObject;
 
+/**
+ * New player dataset
+ */
 class PlayerPreset
 {
+    /**
+     * Name
+     *
+     * @var string
+     */
     private $name;
 
+    /**
+     * Attack rate
+     *
+     * @var int
+     */
     private $attack;
 
+    /**
+     * Defence rate
+     *
+     * @var int
+     */
     private $defence;
 
+    /**
+     * Maximum amount of health
+     *
+     * @var int
+     */
     private $maxHealth;
 
+    /**
+     * Constructor
+     *
+     * @param string $name
+     * @param int    $attack
+     * @param int    $defence
+     * @param int    $maxHealth
+     */
     public function __construct(string $name, int $attack, int $defence, int $maxHealth)
     {
-        $this->name = $name;
-        $this->attack = $attack;
-        $this->defence = $defence;
+        $this->name      = $name;
+        $this->attack    = $attack;
+        $this->defence   = $defence;
         $this->maxHealth = $maxHealth;
     }
 
     /**
+     * Returns name
+     *
      * @return string
      */
     public function getName(): string
@@ -31,6 +64,8 @@ class PlayerPreset
     }
 
     /**
+     * Returns attack rate
+     *
      * @return int
      */
     public function getAttack(): int
@@ -39,6 +74,8 @@ class PlayerPreset
     }
 
     /**
+     * Returns defence rate
+     *
      * @return int
      */
     public function getDefence(): int
@@ -47,6 +84,8 @@ class PlayerPreset
     }
 
     /**
+     * Returns max health
+     *
      * @return int
      */
     public function getMaxHealth(): int
