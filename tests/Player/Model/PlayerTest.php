@@ -110,7 +110,7 @@ class PlayerTest extends TestCase
         $invitedPlayer = $this->createPlayer($playerName);
         $somePlayer    = $this->createPlayer('Some Random Folk');
         $party         = new Party($somePlayer);
-        $invitation    = new PartyInvitation($party, $invitedPlayer);
+        $invitation    = $party->invite($invitedPlayer);
         $invitedPlayer->acceptPartyInvitation($invitation);
 
         return $invitedPlayer;
