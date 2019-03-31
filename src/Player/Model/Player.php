@@ -47,6 +47,13 @@ class Player
     private $maxHealth;
 
     /**
+     * Player party
+     *
+     * @var Party\Party|null
+     */
+    private $party;
+
+    /**
      * Constructor
      *
      * @param PlayerPreset $playerPreset
@@ -108,5 +115,60 @@ class Player
     public function getMaxHealth(): int
     {
         return $this->maxHealth;
+    }
+
+    /**
+     * Accepts party invitation
+     *
+     * @param Party\PartyInvitation $invitation
+     *
+     * @return void
+     *
+     * @throws \DomainException
+     */
+    public function acceptPartyInvitation(Party\PartyInvitation $invitation): void
+    {
+        if ($this->party !== null) {
+            throw new \DomainException(sprintf('"%s" is already in another party', $this->getName()));
+        }
+
+        if (!$invitation->isInviting($this)) {
+            throw new \DomainException('This invitation is for another player');
+        }
+
+        $party = $invitation->getParty();
+        $party->addPlayer($this);
+        $this->party = $party;
+    }
+
+    /**
+     * Invites player to the party
+     *
+     * @param Player $invitedPlayer
+     *
+     * @return void
+     *
+     * @throws \DomainException
+     */
+    public function inviteToParty(Player $invitedPlayer): void
+    {
+        if ($invitedPlayer === $this) {
+            throw new \DomainException('You can not invite yourself');
+        }
+
+        if ($this->party === null) {
+            $this->party = new Party\Party($this);
+        } else {
+            if ($this->party->hasPlayer($invitedPlayer)) {
+                throw new \DomainException(
+                    sprintf('"%s" is already in the same party with you', $invitedPlayer->getName())
+                );
+            }
+        }
+
+        $invitation = new Party\PartyInvitation($this->party, $invitedPlayer);
+
+        // TODO another player should accept but MVP has no time for prelude
+        $invitedPlayer->acceptPartyInvitation($invitation);
     }
 }
