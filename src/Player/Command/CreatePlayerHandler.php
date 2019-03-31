@@ -43,7 +43,7 @@ class CreatePlayerHandler
             $command->getPlayerName(),
             $command->getAttack(),
             $command->getDefence(),
-            100
+            $command->getMaxHealth()
         );
 
         $player = $this->playerCreator->execute($preset);

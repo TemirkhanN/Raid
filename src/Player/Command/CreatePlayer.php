@@ -33,17 +33,26 @@ class CreatePlayer implements NamedCommand
     private $defence;
 
     /**
+     * Maximum amount of health
+     *
+     * @var int
+     */
+    private $maxHealth;
+
+    /**
      * Constructor
      *
      * @param string $playerName
      * @param int    $attack
      * @param int    $defence
+     * @param int    $maxHealth
      */
-    public function __construct(string $playerName, int $attack, int $defence)
+    public function __construct(string $playerName, int $attack, int $defence, int $maxHealth)
     {
         $this->playerName = $playerName;
         $this->attack     = $attack;
         $this->defence    = $defence;
+        $this->maxHealth  = $maxHealth;
     }
 
     /**
@@ -84,5 +93,15 @@ class CreatePlayer implements NamedCommand
     public function getDefence(): int
     {
         return $this->defence;
+    }
+
+    /**
+     * Returns maximum amount of health
+     *
+     * @return int
+     */
+    public function getMaxHealth(): int
+    {
+        return $this->maxHealth;
     }
 }

@@ -8,6 +8,7 @@ use League\Tactician\CommandBus;
 use Raid\Player\Command\CreatePlayer;
 use Raid\Player\Model\Player;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -22,13 +23,27 @@ class CreatePlayerCommand extends Command
         $this->commandBus = $bus;
     }
 
+    protected function configure()
+    {
+        parent::configure();
+
+        $this->addArgument('name', InputArgument::REQUIRED, 'Player name');
+    }
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $name = 'Bilbo';
-        $attack = 1;
-        $defence = 0;
+        $name = $input->getArgument('name');
+        if ($name === '') {
+            return -1;
+        }
 
-        $command = new CreatePlayer($name, $attack, $defence);
+        // TODO it's a preset data for all beginners and should be stored somewhere in config
+        // Some classes preset sounds reasonable
+        $attack  = 10;
+        $defence = 5;
+        $health  = 100;
+
+        $command = new CreatePlayer($name, $attack, $defence, $health);
 
         /**
          * @var Player $player
