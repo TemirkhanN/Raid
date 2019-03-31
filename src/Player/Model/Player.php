@@ -144,31 +144,31 @@ class Player
     /**
      * Invites player to the party
      *
-     * @param Player $invitedPlayer
+     * @param Player $player
      *
      * @return void
      *
      * @throws \DomainException
      */
-    public function inviteToParty(Player $invitedPlayer): void
+    public function inviteToParty(Player $player): void
     {
-        if ($invitedPlayer === $this) {
+        if ($player === $this) {
             throw new \DomainException('You can not invite yourself');
         }
 
         if ($this->party === null) {
             $this->party = new Party\Party($this);
         } else {
-            if ($this->party->hasPlayer($invitedPlayer)) {
+            if ($this->party->hasPlayer($player)) {
                 throw new \DomainException(
-                    sprintf('"%s" is already in the same party with you', $invitedPlayer->getName())
+                    sprintf('"%s" is already in the same party with you', $player->getName())
                 );
             }
         }
 
-        $invitation = new Party\PartyInvitation($this->party, $invitedPlayer);
+        $invitation = $this->party->invite($player);
 
         // TODO another player should accept but MVP has no time for prelude
-        $invitedPlayer->acceptPartyInvitation($invitation);
+        $player->acceptPartyInvitation($invitation);
     }
 }

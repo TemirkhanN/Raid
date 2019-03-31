@@ -56,4 +56,16 @@ class Party
 
         $this->players->attach($player);
     }
+
+    /**
+     * Invites player to the party
+     *
+     * @param Player $player
+     *
+     * @return PartyInvitation
+     */
+    public function invite(Player $player): PartyInvitation
+    {
+        return new PartyInvitation($this, $player);
+    }
 }
