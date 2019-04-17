@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Raid\Player\Model;
 
 use PHPUnit\Framework\TestCase;
+use Raid\Player\Model\Party\Exception\PartyUpFailure;
 use Raid\Player\Model\Party\Party;
-use Raid\Player\Model\Party\PartyInvitation;
 use Raid\Player\ValueObject\PlayerPreset;
 
 /**
@@ -47,7 +47,7 @@ class PlayerTest extends TestCase
      */
     public function testSelfInvitation(): void
     {
-        $this->expectException(\DomainException::class);
+        $this->expectException(PartyUpFailure::class);
         $this->expectExceptionMessage('You can not invite yourself');
 
         $this->player->inviteToParty($this->player);
@@ -63,7 +63,7 @@ class PlayerTest extends TestCase
         $anotherPlayer = $this->createPlayer('Another Folk');
         $this->player->inviteToParty($anotherPlayer);
 
-        $this->expectException(\DomainException::class);
+        $this->expectException(PartyUpFailure::class);
         $this->expectExceptionMessage('"Another Folk" is already in the same party with you');
 
         $this->player->inviteToParty($anotherPlayer);
@@ -78,7 +78,7 @@ class PlayerTest extends TestCase
     {
         $anotherPlayer = $this->createPlayerThatHasJoinedSomeParty('Another Folk');
 
-        $this->expectException(\DomainException::class);
+        $this->expectException(PartyUpFailure::class);
         $this->expectExceptionMessage('"Another Folk" is already in another party');
 
         $this->player->inviteToParty($anotherPlayer);

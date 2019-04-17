@@ -129,11 +129,11 @@ class Player
     public function acceptPartyInvitation(Party\PartyInvitation $invitation): void
     {
         if ($this->party !== null) {
-            throw new \DomainException(sprintf('"%s" is already in another party', $this->getName()));
+            throw Party\Exception\PartyUpFailure::alreadyInOtherParty($this);
         }
 
         if (!$invitation->isInviting($this)) {
-            throw new \DomainException('This invitation is for another player');
+            throw Party\Exception\PartyUpFailure::invitationMismatch();
         }
 
         $party = $invitation->getParty();
@@ -153,16 +153,14 @@ class Player
     public function inviteToParty(Player $player): void
     {
         if ($player === $this) {
-            throw new \DomainException('You can not invite yourself');
+            throw Party\Exception\PartyUpFailure::selfInviteAttempt();
         }
 
         if ($this->party === null) {
             $this->party = new Party\Party($this);
         } else {
             if ($this->party->hasPlayer($player)) {
-                throw new \DomainException(
-                    sprintf('"%s" is already in the same party with you', $player->getName())
-                );
+                throw Party\Exception\PartyUpFailure::alreadyInParty($player);
             }
         }
 
