@@ -34,7 +34,7 @@ class CreatePartyCommand extends Command
     {
         $inviterPlayerName = $input->getArgument('inviter');
         $invitedPlayerName = $input->getArgument('invited');
-        if ($inviterPlayerName === '' || $invitedPlayerName) {
+        if ($inviterPlayerName === '' || $invitedPlayerName === '') {
             return -1;
         }
 
