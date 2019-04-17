@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Raid\Player\Model;
 
+use Raid\Player\Model\Party\PartyInvitation;
 use Raid\Player\ValueObject\PlayerPreset;
 
 /**
@@ -146,11 +147,11 @@ class Player
      *
      * @param Player $player
      *
-     * @return void
+     * @return PartyInvitation
      *
      * @throws \DomainException
      */
-    public function inviteToParty(Player $player): void
+    public function inviteToParty(Player $player): PartyInvitation
     {
         if ($player === $this) {
             throw Party\Exception\PartyUpFailure::selfInviteAttempt();
@@ -164,9 +165,6 @@ class Player
             }
         }
 
-        $invitation = $this->party->invite($player);
-
-        // TODO another player should accept but MVP has no time for prelude
-        $player->acceptPartyInvitation($invitation);
+        return $this->party->invite($player);
     }
 }

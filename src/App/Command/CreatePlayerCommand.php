@@ -16,7 +16,7 @@ class CreatePlayerCommand extends Command
 {
     private $commandBus;
 
-    public function __construct(CommandBus $bus, ?string $name = null)
+    public function __construct(CommandBus $bus, string $name)
     {
         parent::__construct($name);
 

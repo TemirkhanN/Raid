@@ -66,7 +66,8 @@ class PlayerTest extends TestCase
         $this->expectException(PartyUpFailure::class);
         $this->expectExceptionMessage('"Another Folk" is already in the same party with you');
 
-        $this->player->inviteToParty($anotherPlayer);
+        $invitation = $this->player->inviteToParty($anotherPlayer);
+        $anotherPlayer->acceptPartyInvitation($invitation);
     }
 
     /**
@@ -81,7 +82,8 @@ class PlayerTest extends TestCase
         $this->expectException(PartyUpFailure::class);
         $this->expectExceptionMessage('"Another Folk" is already in another party');
 
-        $this->player->inviteToParty($anotherPlayer);
+        $invitation = $this->player->inviteToParty($anotherPlayer);
+        $anotherPlayer->acceptPartyInvitation($invitation);
     }
 
     /**

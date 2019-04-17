@@ -6,3 +6,11 @@ services:
       - 'create_player'
     tags:
       - { name: 'console.command' }
+
+  app.create_party:
+    class: Raid\App\Command\CreatePartyCommand
+    arguments:
+      - '@raid.command.bus'
+      - 'create_party'
+    tags:
+      - { name: 'console.command' }

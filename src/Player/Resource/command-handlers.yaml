@@ -3,3 +3,8 @@ services:
     class: Raid\Player\Command\CreatePlayerHandler
     arguments:
       - '@raid.player.service.create_player'
+
+  raid.player.command_handler.party.create:
+    class: Raid\Player\Command\Party\CreatePartyHandler
+    arguments:
+      - '@raid.player.service.search_player'

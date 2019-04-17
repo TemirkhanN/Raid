@@ -3,3 +3,6 @@ imports:
 services:
   raid.player.service.create_player:
     class: Raid\Player\Service\CreatePlayerService
+
+  raid.player.service.search_player:
+    class: Raid\Player\Service\SearchPlayerService

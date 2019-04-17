@@ -11,7 +11,8 @@ services:
   raid.command.handler_locator:
     class: League\Tactician\Handler\Locator\InMemoryLocator
     calls:
-      - ['addHandler', ['@raid.player.command_handler.create_player', 'create_new_player']]
+        - ['addHandler', ['@raid.player.command_handler.create_player', 'create_new_player']]
+        - ['addHandler', ['@raid.player.command_handler.party.create', 'create_party']]
 
   raid.command_handler_mware:
     class: League\Tactician\Handler\CommandHandlerMiddleware
