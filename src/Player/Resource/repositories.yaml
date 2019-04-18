@@ -1,0 +1,3 @@
+services:
+  raid.player.repository.player:
+    class: Raid\Player\Repository\InMemoryPlayerRepository

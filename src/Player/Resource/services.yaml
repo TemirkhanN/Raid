@@ -1,8 +1,11 @@
 imports:
   - { resource: command-handlers.yaml }
+  - { resource: repositories.yaml }
 services:
   raid.player.service.create_player:
     class: Raid\Player\Service\CreatePlayerService
+    arguments:
+      - '@raid.player.repository.player'
 
   raid.player.service.search_player:
     class: Raid\Player\Service\SearchPlayerService
