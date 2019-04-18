@@ -9,3 +9,6 @@ services:
 
   raid.player.service.search_player:
     class: Raid\Player\Service\SearchPlayerService
+    arguments:
+      - '@raid.player.repository.player'
+      - '@raid.player.service.create_player'
