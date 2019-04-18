@@ -61,7 +61,8 @@ class PlayerTest extends TestCase
     public function testInviteToPartyPlayerThatAlreadyJoinedSameParty(): void
     {
         $anotherPlayer = $this->createPlayer('Another Folk');
-        $this->player->inviteToParty($anotherPlayer);
+        $invitation = $this->player->inviteToParty($anotherPlayer);
+        $anotherPlayer->acceptPartyInvitation($invitation);
 
         $this->expectException(PartyUpFailure::class);
         $this->expectExceptionMessage('"Another Folk" is already in the same party with you');
