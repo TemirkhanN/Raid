@@ -7,6 +7,7 @@ namespace Raid\Player\Model;
 use PHPUnit\Framework\TestCase;
 use Raid\Player\Model\Party\Exception\PartyUpFailure;
 use Raid\Player\Model\Party\Party;
+use Raid\Player\Model\Party\PartyInvitation;
 use Raid\Player\ValueObject\PlayerPreset;
 
 /**
@@ -85,6 +86,26 @@ class PlayerTest extends TestCase
 
         $invitation = $this->player->inviteToParty($anotherPlayer);
         $anotherPlayer->acceptPartyInvitation($invitation);
+    }
+
+    /**
+     * Tests situation when player attempts invitation that was created for another player
+     *
+     * @return void
+     */
+    public function testAttemptAcceptInvitationThatWasNotIntendedForPlayer(): void
+    {
+        $invitation = $this->createMock(PartyInvitation::class);
+        $invitation
+            ->expects($this->once())
+            ->method('isInviting')
+            ->with($this->identicalTo($this->player))
+            ->willReturn(false);
+
+        $this->expectException(PartyUpFailure::class);
+        $this->expectExceptionMessage('This invitation is for another player');
+
+        $this->player->acceptPartyInvitation($invitation);
     }
 
     /**
