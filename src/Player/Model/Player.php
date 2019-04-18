@@ -125,7 +125,7 @@ class Player
      *
      * @return void
      *
-     * @throws \DomainException
+     * @throws Party\Exception\PartyUpFailure
      */
     public function acceptPartyInvitation(Party\PartyInvitation $invitation): void
     {
@@ -149,7 +149,7 @@ class Player
      *
      * @return PartyInvitation
      *
-     * @throws \DomainException
+     * @throws Party\Exception\PartyUpFailure
      */
     public function inviteToParty(Player $player): PartyInvitation
     {
