@@ -21,10 +21,9 @@ class SearchPlayerService
      *
      * @param PlayerRepositoryInterface $playerRepository
      */
-    public function __construct(PlayerRepositoryInterface $playerRepository, CreatePlayerService $service)
+    public function __construct(PlayerRepositoryInterface $playerRepository)
     {
         $this->playerRepository = $playerRepository;
-        $this->serv = $service;
     }
 
     public function execute(string $playerName): ?Player

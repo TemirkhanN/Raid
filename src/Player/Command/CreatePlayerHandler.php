@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Raid\Player\Command;
 
 use Raid\Player\Model\Player;
+use Raid\Player\Repository\PlayerRepositoryInterface;
 use Raid\Player\ValueObject\PlayerPreset;
-use Raid\Player\Service\CreatePlayerService;
 
 /**
  * Player creation handler
@@ -14,20 +14,20 @@ use Raid\Player\Service\CreatePlayerService;
 class CreatePlayerHandler
 {
     /**
-     * Player creation service
+     * Player repository
      *
-     * @var CreatePlayerService
+     * @var PlayerRepositoryInterface
      */
-    private $playerCreator;
+    private $playerRepository;
 
     /**
      * Constructor
      *
-     * @param CreatePlayerService $createPlayerService
+     * @param PlayerRepositoryInterface $playerRepository
      */
-    public function __construct(CreatePlayerService $createPlayerService)
+    public function __construct(PlayerRepositoryInterface $playerRepository)
     {
-        $this->playerCreator = $createPlayerService;
+        $this->playerRepository = $playerRepository;
     }
 
     /**
@@ -35,9 +35,9 @@ class CreatePlayerHandler
      *
      * @param CreatePlayer $command
      *
-     * @return Player
+     * @return void
      */
-    public function handle(CreatePlayer $command): Player
+    public function handle(CreatePlayer $command)
     {
         $preset = new PlayerPreset(
             $command->getPlayerName(),
@@ -46,8 +46,8 @@ class CreatePlayerHandler
             $command->getMaxHealth()
         );
 
-        $player = $this->playerCreator->execute($preset);
+        $player = new Player($preset);
 
-        return $player;
+        $this->playerRepository->savePlayer($player);
     }
 }
