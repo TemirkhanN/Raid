@@ -1,34 +1,11 @@
 #!/usr/bin/env php
 <?php
 
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-
 set_time_limit(0);
 
-define('PROJECT_ROOT', dirname(__DIR__));
+define('APP_DIR', dirname(__DIR__));
 
-require PROJECT_ROOT . '/config/bootstrap.php';
+require APP_DIR . '/config/bootstrap.php';
 
-$containerBuilder = new ContainerBuilder();
-$loader = new YamlFileLoader($containerBuilder, new FileLocator(PROJECT_ROOT . '/config/'));
-$loader->load('services.yaml');
-
-$commands = $containerBuilder->findTaggedServiceIds('console.command');
-
-$console = $containerBuilder->getDefinition('application.console');
-$commandsList = [];
-foreach ($commands as $serviceId => $tagInfo) {
-    $commandsList[] = new \Symfony\Component\DependencyInjection\Reference($serviceId);
-}
-$console->addMethodCall('addCommands', [$commandsList]);
-
-$containerBuilder->compile();
-
-/**
- * @var \Symfony\Component\Console\Application $consosle
- */
-
-$console = $containerBuilder->get('application.console');
-$console->run();
+$kernel = new \Raid\Kernel($_SERVER['APP_ENV'], APP_DIR);
+$kernel->exec();
