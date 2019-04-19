@@ -1,0 +1,7 @@
+imports:
+  - { resource: services.yaml }
+
+services:
+  raid.player.repository.player:
+    class: Raid\Player\Repository\InMemoryPlayerRepository
+    public: true
