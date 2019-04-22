@@ -50,18 +50,18 @@ class CreatePlayerCommand extends AbstractCommand
         $command = new CreatePlayer($name, $attack, $defence, $health);
         $this->getCommandBus()->handle($command);
 
-        $output->writeln(sprintf('%s has entered the game', ColoredCliFormatter::green($name)));
-        $output->writeln(ColoredCliFormatter::green('Stats'));
+        $output->writeln(sprintf('%s has entered the game', ConsoleColorFormatter::green($name)));
+        $output->writeln(ConsoleColorFormatter::green('Stats'));
         $output->writeln(
             sprintf(
                 '%s: %d/%d',
-                ColoredCliFormatter::blue('Health'),
+                ConsoleColorFormatter::blue('Health'),
                 $health,
                 $health
             )
         );
-        $output->writeln(sprintf('%s: %d', ColoredCliFormatter::blue('Attack'), $attack));
-        $output->writeln(sprintf('%s: %d', ColoredCliFormatter::blue('Defence'), $defence));
+        $output->writeln(sprintf('%s: %d', ConsoleColorFormatter::blue('Attack'), $attack));
+        $output->writeln(sprintf('%s: %d', ConsoleColorFormatter::blue('Defence'), $defence));
 
         return 0;
     }

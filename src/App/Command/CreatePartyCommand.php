@@ -50,8 +50,8 @@ class CreatePartyCommand extends AbstractCommand
         $output->writeln(
             sprintf(
                 '"%s" has created party with "%s" the game',
-                ColoredCliFormatter::green($inviterPlayerName),
-                ColoredCliFormatter::green($invitedPlayerName)
+                ConsoleColorFormatter::green($inviterPlayerName),
+                ConsoleColorFormatter::green($invitedPlayerName)
             )
         );
 
