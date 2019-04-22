@@ -93,4 +93,36 @@ trait CharacterTrait
     {
         return $this->maxHealth;
     }
+
+    /**
+     * Restores health
+     *
+     * @param int $health
+     *
+     * @return void
+     */
+    public function heal(int $health): void
+    {
+        $this->currentHealth += $health;
+
+        if ($this->currentHealth > $this->maxHealth) {
+            $this->currentHealth = $this->maxHealth;
+        }
+    }
+
+    /**
+     * Loses health
+     *
+     * @param int $health
+     *
+     * @return void
+     */
+    public function damage(int $health): void
+    {
+        $this->currentHealth -= $health;
+
+        if ($this->currentHealth < 0) {
+            $this->currentHealth = 0;
+        }
+    }
 }

@@ -43,4 +43,22 @@ interface CharacterInterface
      * @return int
      */
     public function getMaxHealth(): int;
+
+    /**
+     * Restores health
+     *
+     * @param int $health
+     *
+     * @return void
+     */
+    public function heal(int $health): void;
+
+    /**
+     * Loses health
+     *
+     * @param int $health
+     *
+     * @return void
+     */
+    public function damage(int $health): void;
 }
