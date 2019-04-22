@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Raid\Player\ValueObject;
+namespace Raid\Character\ValueObject;
 
 /**
- * New player dataset
+ * New character dataset
  */
-class PlayerPreset
+class CharacterPreset
 {
     /**
      * Name

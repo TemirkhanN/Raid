@@ -6,7 +6,7 @@ namespace Raid\Player\Command;
 
 use Raid\Player\Model\Player;
 use Raid\Player\Repository\PlayerRepositoryInterface;
-use Raid\Player\ValueObject\PlayerPreset;
+use Raid\Character\ValueObject\CharacterPreset;
 
 /**
  * Player creation handler
@@ -39,7 +39,7 @@ class CreatePlayerHandler
      */
     public function handle(CreatePlayer $command)
     {
-        $preset = new PlayerPreset(
+        $preset = new CharacterPreset(
             $command->getPlayerName(),
             $command->getAttack(),
             $command->getDefence(),

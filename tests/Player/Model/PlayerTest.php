@@ -8,13 +8,16 @@ use PHPUnit\Framework\TestCase;
 use Raid\Player\Model\Party\Exception\PartyUpFailure;
 use Raid\Player\Model\Party\Party;
 use Raid\Player\Model\Party\PartyInvitation;
-use Raid\Player\ValueObject\PlayerPreset;
+use Raid\Character\ValueObject\CharacterPreset;
 
 /**
  * Tests player model
  */
 class PlayerTest extends TestCase
 {
+    /**
+     * @var Player
+     */
     private $player;
 
     /**
@@ -62,7 +65,7 @@ class PlayerTest extends TestCase
     public function testInviteToPartyPlayerThatAlreadyJoinedSameParty(): void
     {
         $anotherPlayer = $this->createPlayer('Another Folk');
-        $invitation = $this->player->inviteToParty($anotherPlayer);
+        $invitation    = $this->player->inviteToParty($anotherPlayer);
         $anotherPlayer->acceptPartyInvitation($invitation);
 
         $this->expectException(PartyUpFailure::class);
@@ -117,7 +120,7 @@ class PlayerTest extends TestCase
      */
     private function createPlayer(string $name): Player
     {
-        $preset = new PlayerPreset($name, 123, 321, 456);
+        $preset = new CharacterPreset($name, 123, 321, 456);
 
         return new Player($preset);
     }

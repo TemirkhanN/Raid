@@ -7,7 +7,7 @@ namespace Raid\Player\Model;
 use Raid\Character\Model\CharacterInterface;
 use Raid\Character\Model\CharacterTrait;
 use Raid\Player\Model\Party\PartyInvitation;
-use Raid\Player\ValueObject\PlayerPreset;
+use Raid\Character\ValueObject\CharacterPreset;
 
 /**
  * Player
@@ -26,9 +26,9 @@ class Player implements CharacterInterface
     /**
      * Constructor
      *
-     * @param PlayerPreset $playerPreset
+     * @param CharacterPreset $playerPreset
      */
-    public function __construct(PlayerPreset $playerPreset)
+    public function __construct(CharacterPreset $playerPreset)
     {
         $this->name          = $playerPreset->getName();
         $this->attack        = $playerPreset->getAttack();
