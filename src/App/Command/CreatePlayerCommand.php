@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Raid\App\Command;
 
-use League\Tactician\CommandBus;
 use Raid\Player\Command\CreatePlayer;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -14,28 +12,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Player creation command
  */
-class CreatePlayerCommand extends Command
+class CreatePlayerCommand extends AbstractCommand
 {
-    /**
-     * Command bus
-     *
-     * @var CommandBus
-     */
-    private $commandBus;
-
-    /**
-     * Constructor
-     *
-     * @param CommandBus $bus
-     * @param string     $name
-     */
-    public function __construct(CommandBus $bus, string $name)
-    {
-        parent::__construct($name);
-
-        $this->commandBus = $bus;
-    }
-
     /**
      * Command configuration
      *
@@ -70,7 +48,7 @@ class CreatePlayerCommand extends Command
         $health  = 100;
 
         $command = new CreatePlayer($name, $attack, $defence, $health);
-        $this->commandBus->handle($command);
+        $this->getCommandBus()->handle($command);
 
         $output->writeln(sprintf('%s has entered the game', ColoredCliFormatter::green($name)));
         $output->writeln(ColoredCliFormatter::green('Stats'));

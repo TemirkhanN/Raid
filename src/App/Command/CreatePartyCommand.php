@@ -4,24 +4,21 @@ declare(strict_types=1);
 
 namespace Raid\App\Command;
 
-use League\Tactician\CommandBus;
 use Raid\Player\Command\Party\CreateParty;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CreatePartyCommand extends Command
+/**
+ * Party creation command
+ */
+class CreatePartyCommand extends AbstractCommand
 {
-    private $commandBus;
-
-    public function __construct(CommandBus $bus, string $name)
-    {
-        parent::__construct($name);
-
-        $this->commandBus = $bus;
-    }
-
+    /**
+     * Configures command
+     *
+     * @return void
+     */
     protected function configure()
     {
         parent::configure();
@@ -30,6 +27,14 @@ class CreatePartyCommand extends Command
         $this->addArgument('invited', InputArgument::REQUIRED, 'Player name');
     }
 
+    /**
+     * Creates party between players
+     *
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return int|null
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $inviterPlayerName = $input->getArgument('inviter');
@@ -40,7 +45,7 @@ class CreatePartyCommand extends Command
 
         $command = new CreateParty($inviterPlayerName, $invitedPlayerName);
 
-        $this->commandBus->handle($command);
+        $this->getCommandBus()->handle($command);
 
         $output->writeln(
             sprintf(
