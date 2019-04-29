@@ -1,6 +1,6 @@
 services:
   app.create_player:
-    class: Raid\App\Command\CreatePlayerCommand
+    class: Raid\App\Command\Player\CreatePlayerCommand
     arguments:
       - '@raid.command.bus'
       - 'create_player'
@@ -8,7 +8,7 @@ services:
       - { name: 'console.command' }
 
   app.create_party:
-    class: Raid\App\Command\CreatePartyCommand
+    class: Raid\App\Command\Player\CreatePartyCommand
     arguments:
       - '@raid.command.bus'
       - 'create_party'

@@ -2,8 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace Raid\App\Command;
+namespace Raid\App\Command\Player;
 
+use Raid\App\Command\AbstractCommand;
+use Raid\App\Command\ConsoleColorFormatter;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -11,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Raid starting command
  */
-class StartRaidCommand extends \Raid\App\Command\AbstractCommand
+class StartRaidCommand extends AbstractCommand
 {
     protected function configure()
     {

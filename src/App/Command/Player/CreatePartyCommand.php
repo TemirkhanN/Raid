@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Raid\App\Command;
+namespace Raid\App\Command\Player;
 
+use Raid\App\Command\AbstractCommand;
+use Raid\App\Command\ConsoleColorFormatter;
 use Raid\Player\Command\Party\CreateParty;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
