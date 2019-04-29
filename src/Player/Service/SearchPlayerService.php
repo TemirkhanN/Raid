@@ -7,6 +7,9 @@ namespace Raid\Player\Service;
 use Raid\Player\Model\Player;
 use Raid\Player\Repository\PlayerRepositoryInterface;
 
+/**
+ * Player searching service
+ */
 class SearchPlayerService
 {
     /**
@@ -26,6 +29,13 @@ class SearchPlayerService
         $this->playerRepository = $playerRepository;
     }
 
+    /**
+     * Finds player by name
+     *
+     * @param string $playerName
+     *
+     * @return Player|null
+     */
     public function execute(string $playerName): ?Player
     {
         return $this->playerRepository->findPlayerByName($playerName);
