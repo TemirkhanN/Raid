@@ -86,4 +86,14 @@ class Player implements CharacterInterface
 
         return $this->party->invite($player);
     }
+
+    /**
+     * Returns player party
+     *
+     * @return Party\Party|null
+     */
+    public function getParty(): ?Party\Party
+    {
+        return $this->party;
+    }
 }
