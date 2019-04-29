@@ -30,6 +30,7 @@ class CreatePartyHandlerTest extends AbstractCommandHandleTest
         $party = $partyLeader->getParty();
         $this->assertNotNull($party);
         $this->assertTrue($party->hasPlayer($somePlayer));
+        $this->assertSame($party, $somePlayer->getParty());
     }
 
     /**
