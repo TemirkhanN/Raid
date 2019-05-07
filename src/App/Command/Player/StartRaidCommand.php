@@ -6,6 +6,7 @@ namespace Raid\App\Command\Player;
 
 use Raid\App\Command\AbstractCommand;
 use Raid\App\Command\ConsoleColorFormatter;
+use Raid\Boss\Command\StartRaid;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
