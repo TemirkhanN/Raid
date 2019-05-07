@@ -5,8 +5,6 @@ declare(strict_types = 1);
 namespace Raid\Player\Command\Party;
 
 use Raid\AbstractCommandHandleTest;
-use Raid\Character\ValueObject\CharacterPreset;
-use Raid\Player\Model\Player;
 
 /**
  * Party creation tests
@@ -31,24 +29,5 @@ class CreatePartyHandlerTest extends AbstractCommandHandleTest
         $this->assertNotNull($party);
         $this->assertTrue($party->hasPlayer($somePlayer));
         $this->assertSame($party, $somePlayer->getParty());
-    }
-
-    /**
-     * Creates player
-     *
-     * @param string $playerName
-     *
-     * @return Player
-     */
-    private function createPlayer(string $playerName): Player
-    {
-        $playerPreset = new CharacterPreset($playerName, 123, 321, 100);
-        $player       = new Player($playerPreset);
-
-        $playerRepository = $this->getService('raid.player.repository.player');
-
-        $playerRepository->savePlayer($player);
-
-        return $player;
     }
 }
