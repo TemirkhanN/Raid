@@ -15,6 +15,11 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class StartRaidCommand extends AbstractCommand
 {
+    /**
+     * Command configuration
+     *
+     * @return void
+     */
     protected function configure()
     {
         parent::configure();
