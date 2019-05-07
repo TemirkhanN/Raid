@@ -5,7 +5,10 @@ declare(strict_types = 1);
 namespace Raid;
 
 use PHPUnit\Framework\TestCase;
+use Raid\Boss\Model\Boss;
+use Raid\Boss\Model\Raid;
 use Raid\Character\ValueObject\CharacterPreset;
+use Raid\Player\Model\Party\Party;
 use Raid\Player\Model\Player;
 
 /**
@@ -98,5 +101,39 @@ abstract class AbstractCommandHandleTest extends TestCase
         $playerRepository = $this->getService('raid.player.repository.player');
 
         return $playerRepository->findPlayerByName($name);
+    }
+
+    /**
+     * Creates boss
+     *
+     * @param string $name
+     *
+     * @return Boss
+     */
+    protected function createBoss(string $name): Boss
+    {
+        $bossPreset = new CharacterPreset($name, 123, 321, 100);
+
+        $boss = new Boss($bossPreset);
+
+        $bossRepository = $this->getService('raid.boss.repository.boss');
+
+        $bossRepository->save($boss);
+
+        return $boss;
+    }
+
+    /**
+     * Retrieves raid
+     *
+     * @param Party $party
+     *
+     * @return Raid|null
+     */
+    protected function findRaid(Party $party): ?Raid
+    {
+        $raidRepository = $this->getService('raid.boss.repository.boss');
+
+        return $raidRepository->findRaid($party);
     }
 }
