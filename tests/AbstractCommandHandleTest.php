@@ -23,9 +23,9 @@ abstract class AbstractCommandHandleTest extends TestCase
      *
      * @return void
      */
-    public static function setUpBeforeClass(): void
+    protected function setUp(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUp();
 
         self::$kernel = new \Raid\Kernel('test', dirname(__DIR__));
     }
