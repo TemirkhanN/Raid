@@ -70,6 +70,10 @@ class StartRaidHandler
             throw new \RuntimeException('Player without party can not initiate raid');
         }
 
+        if ($party->participatesInRaid()) {
+            throw new \RuntimeException('Party is already participating in some raid');
+        }
+
         $bossName = $command->getBoss();
         if (!$boss = $this->bossSearcher->execute($bossName)) {
             throw new \RuntimeException(sprintf('Unknown raid boss "%s"', $bossName));
@@ -78,7 +82,6 @@ class StartRaidHandler
         $raid = new Raid($boss, $party);
         $raid->start();
 
-        // TODO check if party already involved into encounter
         $this->raidRepository->saveRaid($raid);
     }
 }

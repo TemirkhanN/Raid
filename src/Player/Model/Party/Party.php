@@ -19,6 +19,13 @@ class Party
     private $players;
 
     /**
+     * Identifier of raid-boss encounter
+     *
+     * @var null|string
+     */
+    private $raidId;
+
+    /**
      * Constructor
      *
      * @param Player $leader
@@ -67,5 +74,29 @@ class Party
     public function invite(Player $player): PartyInvitation
     {
         return new PartyInvitation($this, $player);
+    }
+
+    /**
+     * Returns raid identifier
+     *
+     * @return string|null
+     */
+    public function getRaidId(): ?string
+    {
+        return $this->raidId;
+    }
+
+    /**
+     * Checks if party is participating in raid-boss encounter
+     *
+     * @return bool
+     */
+    public function participatesInRaid(): bool
+    {
+        if ($this->raidId === null) {
+            return false;
+        }
+
+        return true;
     }
 }
