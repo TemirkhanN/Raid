@@ -42,6 +42,6 @@ class InMemoryRaidRepository implements RaidRepositoryInterface
             return;
         }
 
-        $this->raids->attach($boss);
+        $this->raids->attach($raid);
     }
 }

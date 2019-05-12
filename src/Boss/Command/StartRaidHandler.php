@@ -8,6 +8,7 @@ use Raid\Boss\Model\Raid;
 use Raid\Boss\Repository\RaidRepositoryInterface;
 use Raid\Boss\Service\SearchBossService;
 use Raid\Player\Service\SearchPlayerService;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Raid initiation handler
@@ -70,7 +71,7 @@ class StartRaidHandler
             throw new \RuntimeException('Player without party can not initiate raid');
         }
 
-        if ($party->participatesInRaid()) {
+        if ($party->isParticipatingInRaid()) {
             throw new \RuntimeException('Party is already participating in some raid');
         }
 
@@ -79,7 +80,7 @@ class StartRaidHandler
             throw new \RuntimeException(sprintf('Unknown raid boss "%s"', $bossName));
         }
 
-        $raid = new Raid($boss, $party);
+        $raid = new Raid(Uuid::uuid4(), $boss, $party);
         $raid->start();
 
         $this->raidRepository->saveRaid($raid);

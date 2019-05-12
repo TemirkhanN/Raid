@@ -91,12 +91,28 @@ class Party
      *
      * @return bool
      */
-    public function participatesInRaid(): bool
+    public function isParticipatingInRaid(): bool
     {
         if ($this->raidId === null) {
             return false;
         }
 
         return true;
+    }
+
+    /**
+     * Says party it participates in raid
+     *
+     * @param string $raidId
+     *
+     * @return void
+     */
+    public function participateInRaid(string $raidId): void
+    {
+        if ($this->isParticipatingInRaid()) {
+            throw new \RuntimeException('Party is already participating in another raid');
+        }
+
+        $this->raidId = $raidId;
     }
 }
