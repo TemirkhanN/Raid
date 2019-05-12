@@ -1,9 +1,11 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Raid\Boss\Model;
 
+use DateTimeImmutable;
+use DateTimeInterface;
 use Raid\Player\Model\Party\Party;
 
 /**
@@ -26,6 +28,20 @@ class Raid
     private $party;
 
     /**
+     * Start time
+     *
+     * @var null|DateTimeImmutable
+     */
+    private $startedAt;
+
+    /**
+     * If the raid is currently active
+     *
+     * @var bool
+     */
+    private $isActive;
+
+    /**
      * Constructor
      *
      * @param BossInterface $boss
@@ -33,8 +49,9 @@ class Raid
      */
     public function __construct(BossInterface $boss, Party $party)
     {
-        $this->boss  = $boss;
-        $this->party = $party;
+        $this->boss      = $boss;
+        $this->party     = $party;
+        $this->isActive  = false;
     }
 
     /**
@@ -55,5 +72,26 @@ class Raid
     public function getParty(): Party
     {
         return $this->party;
+    }
+
+    /**
+     * Returns raid start time
+     *
+     * @return DateTimeInterface|null
+     */
+    public function getStartTime(): ?DateTimeInterface
+    {
+        return $this->startedAt;
+    }
+
+    /**
+     * Starts encounter
+     *
+     * @return void
+     */
+    public function start(): void
+    {
+        $this->isActive  = true;
+        $this->startedAt = new DateTimeImmutable();
     }
 }
