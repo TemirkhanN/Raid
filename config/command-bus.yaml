@@ -1,5 +1,6 @@
 imports:
   - { resource: ../src/Player/Resource/services.yaml }
+  - { resource: ../src/Boss/Resource/services.yaml }
 
 services:
   raid.command.handler_method_inflector:
@@ -10,9 +11,11 @@ services:
 
   raid.command.handler_locator:
     class: League\Tactician\Handler\Locator\InMemoryLocator
+    # TODO compiler pass
     calls:
         - ['addHandler', ['@raid.player.command_handler.create_player', 'create_new_player']]
         - ['addHandler', ['@raid.player.command_handler.party.create', 'create_party']]
+        - ['addHandler', ['@raid.boss.command_handler.start_raid', 'start_raid']]
 
   raid.command_handler_mware:
     class: League\Tactician\Handler\CommandHandlerMiddleware

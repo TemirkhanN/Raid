@@ -1,0 +1,16 @@
+parameters:
+  raid.bosses:
+    -
+      name: 'Beorn'
+      attack: 50
+      defence: 50
+      maxHealth: 3456
+
+services:
+  raid.boss.repository.boss:
+    class: Raid\Boss\Repository\InMemoryBossRepository
+    arguments:
+      - '%raid.bosses%'
+
+  raid.boss.repository.raid:
+    class: Raid\Boss\Repository\InMemoryRaidRepository

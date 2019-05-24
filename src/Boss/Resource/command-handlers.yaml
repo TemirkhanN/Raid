@@ -1,0 +1,7 @@
+services:
+  raid.boss.command_handler.start_raid:
+    class: Raid\Boss\Command\StartRaidHandler
+    arguments:
+      - '@raid.player.service.search_player'
+      - '@raid.boss.service.search_boss'
+      - '@raid.boss.repository.raid'

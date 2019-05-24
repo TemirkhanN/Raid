@@ -14,3 +14,11 @@ services:
       - 'create_party'
     tags:
       - { name: 'console.command' }
+
+  app.start_raid:
+    class: Raid\App\Command\Player\StartRaidCommand
+    arguments:
+      - '@raid.command.bus'
+      - 'start_raid'
+    tags:
+      - { name: 'console.command' }

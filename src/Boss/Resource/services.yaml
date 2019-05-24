@@ -1,0 +1,9 @@
+imports:
+  - { resource: command-handlers.yaml }
+  - { resource: repositories.yaml }
+
+services:
+  raid.boss.service.search_boss:
+    class: Raid\Boss\Service\SearchBossService
+    arguments:
+      - '@raid.boss.repository.boss'
