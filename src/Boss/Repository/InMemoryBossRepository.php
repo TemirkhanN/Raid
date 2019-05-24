@@ -27,7 +27,14 @@ class InMemoryBossRepository implements BossRepositoryInterface
     public function __construct(array $bosses)
     {
         $this->bosses = new \SplObjectStorage();
-        foreach ($bosses as $bossPreset) {
+        foreach ($bosses as $preset) {
+            $bossPreset = new CharacterPreset(
+                $preset['name'],
+                $preset['attack'],
+                $preset['defence'],
+                $preset['maxHealth']
+            );
+
             $boss = new Boss($bossPreset);
             $this->saveBoss($boss);
         }
