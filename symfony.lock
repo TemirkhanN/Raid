@@ -8,6 +8,9 @@
     "myclabs/deep-copy": {
         "version": "1.8.1"
     },
+    "paragonie/random_compat": {
+        "version": "v9.99.99"
+    },
     "phar-io/manifest": {
         "version": "1.0.3"
     },
@@ -58,6 +61,9 @@
     },
     "psr/container": {
         "version": "1.0.0"
+    },
+    "ramsey/uuid": {
+        "version": "3.8.0"
     },
     "sebastian/code-unit-reverse-lookup": {
         "version": "1.0.1"

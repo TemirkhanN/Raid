@@ -80,7 +80,8 @@ class StartRaidHandler
             throw new \RuntimeException(sprintf('Unknown raid boss "%s"', $bossName));
         }
 
-        $raid = new Raid(Uuid::uuid4(), $boss, $party);
+        $raidIdentifier = Uuid::uuid4()->toString();
+        $raid           = new Raid($raidIdentifier, $boss, $party);
         $raid->start();
 
         $this->raidRepository->saveRaid($raid);
