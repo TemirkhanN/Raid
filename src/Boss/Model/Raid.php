@@ -41,9 +41,9 @@ class Raid
      */
     public function __construct(string $id, BossInterface $boss, Party $party)
     {
-        $this->id       = $id;
-        $this->boss     = $boss;
-        $this->party    = $party;
+        $this->id    = $id;
+        $this->boss  = $boss;
+        $this->party = $party;
     }
 
     /**
