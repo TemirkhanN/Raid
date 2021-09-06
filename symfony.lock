@@ -95,6 +95,9 @@
     "sebastian/resource-operations": {
         "version": "2.0.1"
     },
+    "sebastian/type": {
+        "version": "1.1.4"
+    },
     "sebastian/version": {
         "version": "2.0.1"
     },
@@ -123,9 +126,6 @@
             "config/bootstrap.php"
         ]
     },
-    "symfony/contracts": {
-        "version": "v1.0.2"
-    },
     "symfony/dependency-injection": {
         "version": "v4.2.4"
     },
@@ -152,6 +152,18 @@
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.11.0"
+    },
+    "symfony/polyfill-php73": {
+        "version": "v1.23.0"
+    },
+    "symfony/polyfill-php80": {
+        "version": "v1.23.1"
+    },
+    "symfony/polyfill-php81": {
+        "version": "v1.23.0"
+    },
+    "symfony/service-contracts": {
+        "version": "v2.4.0"
     },
     "symfony/yaml": {
         "version": "v4.2.4"
