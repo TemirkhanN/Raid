@@ -1,9 +1,15 @@
 imports:
-  - { resource: command-handlers.yaml }
   - { resource: repositories.yaml }
 
 services:
-  raid.boss.service.search_boss:
-    class: Raid\Boss\Service\SearchBossService
-    arguments:
-      - '@raid.boss.repository.boss'
+  _defaults:
+    autowire: true
+
+  Raid\Boss\Service\:
+    resource: '../Service/'
+
+  Raid\Boss\Repository\:
+    resource: '../Repository/'
+
+  Raid\Boss\Command\:
+    resource: '../Command/'

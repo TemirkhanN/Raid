@@ -16,6 +16,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class CreatePartyCommand extends AbstractCommand
 {
+    protected static $defaultName = 'create_party';
+
     /**
      * Configures command
      *

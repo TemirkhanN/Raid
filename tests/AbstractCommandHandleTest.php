@@ -4,12 +4,17 @@ declare(strict_types = 1);
 
 namespace Raid;
 
+use League\Tactician\CommandBus;
 use PHPUnit\Framework\TestCase;
 use Raid\Boss\Model\Boss;
 use Raid\Boss\Model\Raid;
+use Raid\Boss\Repository\BossRepositoryInterface;
+use Raid\Boss\Repository\InMemoryBossRepository;
+use Raid\Boss\Repository\RaidRepositoryInterface;
 use Raid\Character\ValueObject\CharacterPreset;
 use Raid\Player\Model\Party\Party;
 use Raid\Player\Model\Player;
+use Raid\Player\Repository\PlayerRepositoryInterface;
 
 /**
  * Abstract command bus test-suite
@@ -56,7 +61,7 @@ abstract class AbstractCommandHandleTest extends TestCase
      */
     protected function runCommand($command): void
     {
-        self::$kernel->getService('raid.command.bus')->handle($command);
+        self::$kernel->getService(CommandBus::class)->handle($command);
     }
 
     /**
@@ -83,7 +88,7 @@ abstract class AbstractCommandHandleTest extends TestCase
         $playerPreset = new CharacterPreset($playerName, 123, 321, 100);
         $player       = new Player($playerPreset);
 
-        $playerRepository = $this->getService('raid.player.repository.player');
+        $playerRepository = $this->getService(PlayerRepositoryInterface::class);
         $playerRepository->savePlayer($player);
 
         return $player;
@@ -98,7 +103,7 @@ abstract class AbstractCommandHandleTest extends TestCase
      */
     protected function findPlayer(string $name): ?Player
     {
-        $playerRepository = $this->getService('raid.player.repository.player');
+        $playerRepository = $this->getService(PlayerRepositoryInterface::class);
 
         return $playerRepository->findPlayerByName($name);
     }
@@ -116,9 +121,9 @@ abstract class AbstractCommandHandleTest extends TestCase
 
         $boss = new Boss($bossPreset);
 
-        $bossRepository = $this->getService('raid.boss.repository.boss');
+        $bossRepository = $this->getService(InMemoryBossRepository::class);
 
-        $bossRepository->save($boss);
+        $bossRepository->saveBoss($boss);
 
         return $boss;
     }
@@ -132,7 +137,7 @@ abstract class AbstractCommandHandleTest extends TestCase
      */
     protected function findRaid(Party $party): ?Raid
     {
-        $raidRepository = $this->getService('raid.boss.repository.boss');
+        $raidRepository = $this->getService(RaidRepositoryInterface::class);
 
         return $raidRepository->findRaid($party);
     }

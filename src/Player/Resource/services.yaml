@@ -1,9 +1,12 @@
-imports:
-  - { resource: command-handlers.yaml }
-  - { resource: repositories.yaml }
-
 services:
-  raid.player.service.search_player:
-    class: Raid\Player\Service\SearchPlayerService
-    arguments:
-      - '@raid.player.repository.player'
+  _defaults:
+    autowire: true
+
+  Raid\Player\Command\:
+    resource: '../Command/'
+
+  Raid\Player\Service\:
+    resource: '../Service/'
+
+  Raid\Player\Repository\:
+    resource: '../Repository/'

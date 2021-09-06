@@ -2,6 +2,18 @@ imports:
   - { resource: services.yaml }
 
 services:
-  raid.player.repository.player:
+  _defaults:
+    autowire: true
+  Raid\Player\Repository\PlayerRepositoryInterface:
     class: Raid\Player\Repository\InMemoryPlayerRepository
     public: true
+
+  Raid\Boss\Repository\RaidRepositoryInterface:
+    class: Raid\Boss\Repository\InMemoryRaidRepository
+    public: true
+
+  Raid\Boss\Repository\InMemoryBossRepository:
+    public: true
+    class: Raid\Boss\Repository\InMemoryBossRepository
+    arguments:
+      $bosses: []

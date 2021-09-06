@@ -7,10 +7,12 @@ parameters:
       maxHealth: 3456
 
 services:
-  raid.boss.repository.boss:
-    class: Raid\Boss\Repository\InMemoryBossRepository
+  _defaults:
+    autowire: true
+
+  Raid\Boss\Repository\:
+    resource: '../Repository'
+
+  Raid\Boss\Repository\InMemoryBossRepository:
     arguments:
       - '%raid.bosses%'
-
-  raid.boss.repository.raid:
-    class: Raid\Boss\Repository\InMemoryRaidRepository

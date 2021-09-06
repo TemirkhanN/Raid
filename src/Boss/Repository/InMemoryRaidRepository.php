@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Raid\Boss\Repository;
 
 use Raid\Boss\Model\Raid;
+use Raid\Player\Model\Party\Party;
 use SplObjectStorage;
 
 /**
@@ -25,6 +26,23 @@ class InMemoryRaidRepository implements RaidRepositoryInterface
     public function __construct()
     {
         $this->raids = new SplObjectStorage();
+    }
+
+    public function findRaid(Party $party): ?Raid
+    {
+        $raidId = $party->getRaidId();
+        if ($raidId === null) {
+            return null;
+        }
+
+        foreach ($this->raids as $raid) {
+            // TODO law of demeter
+            if ($raid->getParty()->getRaidId() === $raidId) {
+                return $raid;
+            }
+        }
+
+        return null;
     }
 
     /**

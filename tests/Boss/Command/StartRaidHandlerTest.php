@@ -18,8 +18,12 @@ class StartRaidHandlerTest extends AbstractCommandHandleTest
      */
     public function testRaidInitiation(): void
     {
-        $this->createPlayer('Tul');
         $this->createBoss('Beorn');
+
+        $player1 = $this->createPlayer('Tul');
+        $player2 = $this->createPlayer('Gon');
+        $invitation = $player1->inviteToParty($player2);
+        $player2->acceptPartyInvitation($invitation);
 
         $command = new StartRaid('Tul', 'Beorn');
 

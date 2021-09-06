@@ -16,6 +16,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class StartRaidCommand extends AbstractCommand
 {
+    protected static $defaultName = 'start_raid';
+
     /**
      * Command configuration
      *

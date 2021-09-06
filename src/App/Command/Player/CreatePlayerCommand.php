@@ -16,6 +16,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class CreatePlayerCommand extends AbstractCommand
 {
+    protected static $defaultName = 'create_player';
+
     /**
      * Command configuration
      *
