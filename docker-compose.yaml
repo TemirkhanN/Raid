@@ -1,7 +1,7 @@
 version: "3"
 services:
   php:
-    image: gaiaz/php-symfony:7.3-cli-alpine
+    image: gaiaz/php-symfony:7.4-cli-alpine
     volumes:
       - ./:/app
     tty: true
