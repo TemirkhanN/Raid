@@ -3,9 +3,7 @@
 
 set_time_limit(0);
 
-define('APP_DIR', dirname(__DIR__));
+require dirname(__DIR__) .'/vendor/autoload.php';
 
-require APP_DIR . '/config/bootstrap.php';
-
-$kernel = new \Raid\Kernel($_SERVER['APP_ENV'], APP_DIR);
+$kernel = new \Raid\Kernel(dirname(__DIR__));
 $kernel->exec();

@@ -8,8 +8,5 @@ services:
   Raid\Boss\Service\:
     resource: '../Service/'
 
-  Raid\Boss\Repository\:
-    resource: '../Repository/'
-
   Raid\Boss\Command\:
     resource: '../Command/'

@@ -52,7 +52,7 @@ class CreatePlayerCommand extends AbstractCommand
         $health  = 100;
 
         $command = new CreatePlayer($name, $attack, $defence, $health);
-        $this->getCommandBus()->handle($command);
+        $this->handle($command);
 
         $output->writeln(sprintf('%s has entered the game', ConsoleColorFormatter::green($name)));
         $output->writeln(ConsoleColorFormatter::green('Stats'));

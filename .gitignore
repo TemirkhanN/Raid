@@ -3,5 +3,5 @@ vendor
 
 ###> phpunit/phpunit ###
 /phpunit.xml
-/.phpunit.result.cache
+.phpunit.result.cache
 ###< phpunit/phpunit ###

@@ -48,7 +48,7 @@ class StartRaidCommand extends AbstractCommand
         }
 
         $command = new StartRaid($raidInitiator, $bossName);
-        $this->getCommandBus()->handle($command);
+        $this->handle($command);
 
         $output->writeln(
             sprintf(

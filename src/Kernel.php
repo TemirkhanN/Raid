@@ -6,9 +6,11 @@ namespace Raid;
 
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Console\Application;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\Dotenv\Dotenv;
 
 /**
  * Application kernel
@@ -22,28 +24,27 @@ class Kernel
      */
     private $container;
 
-    /**
-     * Constructor
-     *
-     * @param string $environment
-     * @param string $appDir
-     */
-    public function __construct(string $environment, string $appDir)
+    public function __construct(string $appDir)
     {
+        $envFile = realpath($appDir .'/.env');
+        if ($envFile !== false) {
+            $dotenv = new Dotenv();
+            $dotenv->bootEnv($envFile);
+        }
+
         $this->container = new ContainerBuilder();
         $loader          = new YamlFileLoader($this->container, new FileLocator($appDir . '/config/'));
-        if ($environment === 'production') {
+
+        $env = $_ENV['APP_ENV'] ?? $_SERVER['APP_ENV'] ?? 'dev';
+
+        try {
+            $loader->load(sprintf('services_%s.yaml', $env));
+        } catch (FileLocatorFileNotFoundException $e) {
             $loader->load('services.yaml');
-        } else {
-            try {
-                $loader->load(sprintf('services_%s.yaml', $environment));
-            } catch (FileLocatorFileNotFoundException $e) {
-                $loader->load('services.yaml');
-            }
         }
 
         $commands = $this->container->findTaggedServiceIds('console.command');
-        $console  = $this->container->getDefinition('application.console');
+        $console  = $this->container->getDefinition(Application::class);
 
         $commandsList = [];
         foreach ($commands as $serviceId => $tagInfo) {
@@ -73,7 +74,7 @@ class Kernel
      */
     public function exec(): void
     {
-        $console = $this->getService('application.console');
+        $console = $this->getService(Application::class);
         $console->run();
     }
 }

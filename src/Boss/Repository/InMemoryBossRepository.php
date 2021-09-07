@@ -22,7 +22,7 @@ class InMemoryBossRepository implements BossRepositoryInterface
     /**
      * Constructor
      *
-     * @param CharacterPreset[] $bosses
+     * @param array $bosses
      */
     public function __construct(array $bosses)
     {

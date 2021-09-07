@@ -49,7 +49,7 @@ class CreatePartyCommand extends AbstractCommand
 
         $command = new CreateParty($inviterPlayerName, $invitedPlayerName);
 
-        $this->getCommandBus()->handle($command);
+        $this->handle($command);
 
         $output->writeln(
             sprintf(

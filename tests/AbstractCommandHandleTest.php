@@ -8,7 +8,6 @@ use League\Tactician\CommandBus;
 use PHPUnit\Framework\TestCase;
 use Raid\Boss\Model\Boss;
 use Raid\Boss\Model\Raid;
-use Raid\Boss\Repository\BossRepositoryInterface;
 use Raid\Boss\Repository\InMemoryBossRepository;
 use Raid\Boss\Repository\RaidRepositoryInterface;
 use Raid\Character\ValueObject\CharacterPreset;
@@ -37,7 +36,7 @@ abstract class AbstractCommandHandleTest extends TestCase
     {
         parent::setUp();
 
-        self::$kernel = new \Raid\Kernel('test', dirname(__DIR__));
+        self::$kernel = new Kernel(dirname(__DIR__));
     }
 
     /**

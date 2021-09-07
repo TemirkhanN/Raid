@@ -25,20 +25,15 @@ abstract class AbstractCommand extends Command
      * @param CommandBus $bus
      * @param string     $name
      */
-    public function __construct(CommandBus $bus, string $name)
+    public function __construct(CommandBus $bus)
     {
-        parent::__construct($name);
+        parent::__construct();
 
         $this->commandBus = $bus;
     }
 
-    /**
-     * Returns command bus
-     *
-     * @return CommandBus
-     */
-    protected function getCommandBus(): CommandBus
+    protected function handle(object $command)
     {
-        return $this->commandBus;
+        return $this->commandBus->handle($command);
     }
 }

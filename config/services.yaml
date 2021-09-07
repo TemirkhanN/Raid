@@ -6,13 +6,13 @@ parameters:
 services:
   _defaults:
     autowire: true
-    autoconfigure: true
 
   Raid\App\Command\:
     resource: '../src/App/Command/'
+    exclude: '../src/App/Command/ConsoleColorFormatter.php'
+    tags: ['console.command']
 
-  application.console:
+  Symfony\Component\Console\Application:
     public: true
-    class: Symfony\Component\Console\Application
     arguments:
       - '%project_name%'
